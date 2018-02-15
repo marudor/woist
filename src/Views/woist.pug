@@ -1,0 +1,8 @@
+extends layout.pug
+
+block content
+  .container-fluid
+    if currentLocation.currentlyTravelling
+      include train.pug
+    else
+      include station.pug
