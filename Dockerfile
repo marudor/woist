@@ -1,4 +1,4 @@
-FROM node:8-alpine as build
+FROM node:10-alpine as build
 WORKDIR /app
 COPY .babelrc.js .babelrc.js
 COPY package.json package.json
@@ -9,7 +9,7 @@ ENV NODE_ENV production
 RUN yarn build
 
 
-FROM node:8-alpine
+FROM node:10-alpine
 WORKDIR /app
 COPY package.json package.json
 COPY yarn.lock yarn.lock

@@ -4,13 +4,16 @@ module.exports = {
       '@babel/preset-env',
       {
         targets: {
-          node: '8.7',
+          node: '10',
         },
         loose: true,
         useBuiltIns: 'entry',
       },
     ],
     '@babel/preset-flow',
+    ['@babel/stage-1', {
+      decoratorsLegacy: true,
+    }],
   ],
   plugins: [
     [
