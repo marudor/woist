@@ -2,8 +2,17 @@
 import cheerio from 'cheerio';
 import fetch from 'node-fetch';
 
-export function getProfile(username: string) {
-  return fetch(`https://traewelling.de/profile/${username}`).then(res => res.text());
+export async function getProfile(username: string, retry: number = 2) {
+  try {
+    const fetchResult = await fetch(`https://traewelling.de/profile/${username}`);
+
+    return fetchResult.text();
+  } catch (e) {
+    if (retry > 0) {
+      return getProfile(username, retry - 1);
+    }
+    throw e;
+  }
 }
 
 const splitTimeAndValueRegex = /(.*) \((.*)\)$/;
